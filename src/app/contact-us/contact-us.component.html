@@ -1,0 +1,62 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div class="div1">
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" formControlName="fullName" />
+      <div class="error-message" *ngIf="contactForm.get('fullName')?.hasError('required')">
+        Full Name is required!
+      </div>
+      <div class="error-message" *ngIf="contactForm.get('fullName')?.hasError('maxLength')">
+        Full Name cannot exceed 20 characters!
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="emailAddress">Email Address</label>
+      <input type="email" id="emailAddress" formControlName="emailAddress" />
+      <div class="error-message" *ngIf="contactForm.get('emailAddress')?.hasError('required')">
+          Email Address is required!
+        </div>
+        <div class="error-message" *ngIf="contactForm.get('emailAddress')?.hasError('email')">
+          Please Enter a valid Email Address!
+        </div>
+    </div>
+  </div>
+
+  <div class="div1">
+    <div class="form-group">
+      <label for="contactNumber">Contact Number</label>
+    <input type="text" id="contactNumber" formControlName="contactNumber" />
+    <div class="error-message" *ngIf="contactForm.get('contactNumber')?.hasError('required')">
+        Contact Number is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="subject">Subject</label>
+      <input
+      type="text"
+      id="subject"
+      formControlName="subject"
+      />
+      <div class="error-message" *ngIf="contactForm.get('subject')?.hasError('required')">
+        Subject is required.
+      </div>
+      <div class="error-message" *ngIf="contactForm.get('subject')?.hasError('maxlength')">
+        Subject cannot exceed 30 characters.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea
+      id="comment"
+      formControlName="comment"
+    ></textarea>
+    <div class="error-message" *ngIf="contactForm.get('comment')?.hasError('required')">
+      Comment is required.
+    </div>
+    <div class="error-message" *ngIf="contactForm.get('comment')?.hasError('maxlength')">
+      Comment cannot exceed 200 characters.
+    </div>
+  </div>
+  <button type="submit" [disabled]="contactForm.invalid">Submit</button>
+</form>
